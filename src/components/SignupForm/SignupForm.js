@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import LoginForm from '../LoginForm/LoginForm'
 import './SignupForm.css'
 import {auth} from '../../context/firebase'
+import { useHistory } from 'react-router'
 
 function SignupForm() {
     const [email, setEmail] = useState('')
@@ -11,6 +12,7 @@ function SignupForm() {
     const [isPasswordActive, setIsPasswordActive] = useState(false)
     const [isRepasswordActive, setIsRepasswordActive] = useState(false)
     const [showLoginForm, setShowLoginForm] = useState(false)
+    const history = useHistory()
 
 
     const handleEmailChange = (e) => {
@@ -69,73 +71,76 @@ function SignupForm() {
 
     return (
         <div className="signupForm">
-            {
-                showLoginForm ? (
-                    <LoginForm />
-                ) : (
-                    <div className="signupForm__container">
-                        <h1>Sign up</h1>
-                        <form>
-                            <div className="signupForm__floatlabel">
-                                <input
-                                    type="email"
-                                    value={email}
-                                    onChange={handleEmailChange}
-                                />
-                                <label
-                                    htmlFor="email"
-                                    className={isEmailActive ? "active" : ""}
-                                >
-                                    Email or phone number
-                                </label>
-                            </div>
-                            <div className="signupForm__floatlabel">
-                                <input 
-                                    type="password"
-                                    onChange={handlePasswordChange} 
-                                />
-                                <label
-                                    htmlFor="password"
-                                    className={isPasswordActive ? "active" : ""}
-                                >
-                                    Password
-                                </label>
-                            </div>
-                            <div className="signupForm__floatlabel">
-                                <input 
-                                    type="password" 
-                                    onChange={handleRepasswordChange}
-                                />
-                                <label
-                                    htmlFor="repeatPassword"
-                                    className={isRepasswordActive ? "active" : ""}
-                                >
-                                    Re-enter password
-                                </label>
-                            </div>
-                            <button
-                                type="submit"
-                                className="signupForm__button"
-                                onClick={handleSubmitForm}
-                            >
-                                Sign up
-                            </button>
-                        </form>
-
-                        <div className="signupForm__footer">
-                            <p>Already have an account?{" "}
-                                <span 
-                                    className="color__white"
-                                    onClick={() => setShowLoginForm(true)}
-                                >
-                                    Log In
-                                </span>
-                            </p>
-                        </div>
+            <div>
+                <img 
+                    src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png"
+                    alt="NETFLIX"
+                    className="loginScreen__logo"
+                    onClick={() => history.push("/")}
+                />
+                
+                <div className="loginScreen__gradient" />
+            </div>
+            <div className="signupForm__container">
+                <h1>Sign up</h1>
+                <form>
+                    <div className="signupForm__floatlabel">
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={handleEmailChange}
+                        />
+                        <label
+                            htmlFor="email"
+                            className={isEmailActive ? "active" : ""}
+                        >
+                            Email or phone number
+                        </label>
                     </div>
-                )
+                    <div className="signupForm__floatlabel">
+                        <input 
+                            type="password"
+                            onChange={handlePasswordChange} 
+                        />
+                        <label
+                            htmlFor="password"
+                            className={isPasswordActive ? "active" : ""}
+                        >
+                            Password
+                        </label>
+                    </div>
+                    <div className="signupForm__floatlabel">
+                        <input 
+                            type="password" 
+                            onChange={handleRepasswordChange}
+                        />
+                        <label
+                            htmlFor="repeatPassword"
+                            className={isRepasswordActive ? "active" : ""}
+                        >
+                            Re-enter password
+                        </label>
+                    </div>
+                    <button
+                        type="submit"
+                        className="signupForm__button"
+                        onClick={handleSubmitForm}
+                    >
+                        Sign up
+                    </button>
+                </form>
 
-            }
+                <div className="signupForm__footer">
+                    <p>Already have an account?{" "}
+                        <span 
+                            className="color__white"
+                            onClick={() => history.push("/login")}
+                        >
+                            Log In.
+                        </span>
+                    </p>
+                </div>
+            </div>
         </div>
     )
 }
