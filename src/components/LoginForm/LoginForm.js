@@ -101,10 +101,14 @@ function LoginForm() {
                             </button>
                             <p 
                                 className="loginForm__signuplink"
-                                onClick={() => setSignupForm(true)}
                             >
                                 New to Netflix? {' '}
-                                <span className="color__white">Sign up now.</span>
+                                <span 
+                                    className="color__white"
+                                    onClick={() => setSignupForm(true)}
+                                >
+                                    Sign up now.
+                                </span>
                             </p>
                             <p className="loginForm__info">
                                 This page is procted by Google reCAPTCHA to ensure you're not a bot.{' '}
