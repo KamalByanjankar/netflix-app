@@ -68,14 +68,41 @@
 }
 
 .loginScreen__form {
+  display: flex;
   margin: 12px;
 }
 
-.loginScreen__form > input {
+.float__label {
+  display: flex;
+  flex-direction: column;
+  min-width: 350px;
+  position: relative;
+}
+
+.float__label > input {
   padding: 20px 14px;
-  width: 384px;
+  width: 400px;
   outline: none;
   font-size: 15px;
+}
+
+.float__label > label {
+  font-size: 15px;
+  padding: 0 14px;
+  color: rgb(70, 70, 70);
+  position: absolute;
+  transform: translate(5px, 20px) scale(1);
+  transform-origin: top left;
+  transition: all 0.2s ease-out;
+  pointer-events: none;
+}
+
+.float__label:focus-within label {
+  transform: translate(5px, 5px) scale(0.75);
+}
+
+.float__label .active {
+  transform: translate(5px, 5px) scale(0.75);
 }
 
 .loginScreen__form > button {

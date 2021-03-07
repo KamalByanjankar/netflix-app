@@ -26,10 +26,11 @@
   margin: 10px 0;
 }
 
-.loginForm__container > form > input {
+.loginForm__container > form > div > input {
   border: none;
   outline: none;
   margin: 5px 0;
+  width: 92%;
   padding: 8px 12px;
   height: 30px;
   border-radius: 5px;
@@ -51,12 +52,40 @@
   cursor: pointer;
 }
 
+.loginForm__floatlabel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.loginForm__floatlabel > label {
+  position: absolute;
+  padding: 0 12px;
+  transform: translate(0, 15px) scale(1);
+  transform-origin: top left;
+  transition: all 0.2s ease-out;
+  pointer-events: none;
+}
+
+.loginForm__floatlabel:focus-within label {
+  transform: translate(5px, 5px) scale(0.6);
+}
+
+.loginForm__floatlabel .active {
+  transform: translate(5px, 5px) scale(0.6);
+}
+
 .loginForm__footer {
   font-size: 13px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 60px;
+}
+
+.loginForm__help:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .loginForm__additionalLogin {

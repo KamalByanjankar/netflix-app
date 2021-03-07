@@ -5,6 +5,21 @@ import './LoginScreen.css'
 function LoginScreen() {
     const [signin, setSignin] = useState(false)
     const [showSignin, setShowSignin] = useState(true)
+    const [value, setValue] = useState('')
+    const [isActive, setIsActive] = useState(false)
+
+
+    const handleTextChange = (e) => {
+        const text = e.target.value
+        setValue(text)
+
+        if(text !== ''){
+            setIsActive(true)
+        }
+        else{
+            setIsActive(false)
+        }
+    }
 
     return (
         <div className="loginScreen">
@@ -39,8 +54,22 @@ function LoginScreen() {
                             <h1>Unlimited films, TV programmes and more.</h1>
                             <h3>Watch anywhere. Cancel at any time.</h3>
                             <p>Ready to watch? Enter your email to create or restart your membership.</p>
+                            
                             <form className="loginScreen__form">
-                                <input type="email" placeholder="Email address" required/>
+                                <div className="float__label">
+                                    <input 
+                                        type="email" 
+                                        value={value}
+                                        onChange={handleTextChange}
+                                    />
+                                    <label 
+                                        htmlFor="email"
+                                        className={isActive ? "active" : ""}
+                                    >
+                                        Email address
+                                    </label>
+                                </div>
+                                
                                 <button 
                                     type="submit"
                                 >
