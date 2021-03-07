@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import LoginForm from '../LoginForm/LoginForm'
 import './SignupForm.css'
+import {auth} from '../../context/firebase'
 
 function SignupForm() {
     const [email, setEmail] = useState('')
@@ -45,6 +46,24 @@ function SignupForm() {
         }       
         else {
             setIsRepasswordActive(false)
+        }
+    }
+
+    const handleSubmitForm = (e) => {
+        e.preventDefault()
+        if(password !== repassword){
+            alert("Passwords don't match!")
+        }
+        else{
+            auth.createUserWithEmailAndPassword(email, password)
+            .then((authUser) => {
+                console.log(authUser)
+                alert('Your account has been successfully created!')
+            })
+            .catch(error => {
+                alert(error.message)
+            })
+
         }
     }
 
@@ -97,6 +116,7 @@ function SignupForm() {
                             <button
                                 type="submit"
                                 className="signupForm__button"
+                                onClick={handleSubmitForm}
                             >
                                 Sign up
                             </button>
