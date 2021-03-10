@@ -66,7 +66,11 @@ function SignupForm() {
                 alert(error.message)
             })
 
+            setEmail('')
+            setPassword('')
+            setRepassword('')
         }
+        history.push("/login")
     }
 
     return (

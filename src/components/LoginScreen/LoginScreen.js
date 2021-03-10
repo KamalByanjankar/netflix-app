@@ -61,6 +61,7 @@ function LoginScreen() {
                     
                     <button 
                         type="submit"
+                        onClick={() => history.push("/signup")}
                     >
                         Get Started 
                     </button>

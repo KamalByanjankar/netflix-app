@@ -1,5 +1,5 @@
 .loginForm {
-  position: absolute;
+  position: relative;
   background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/399d6794-b770-4b21-992d-a3326710a170/5269df27-2ff0-41e7-a5a8-9526ddead4d1/DE-en-20210215-popsignuptwoweeks-perspective_alpha_website_small.jpg");
   height: 100vh;
   width: 100%;
@@ -31,7 +31,7 @@
 
 .loginForm__container > form {
   display: grid;
-  margin: 45px;
+  margin: 0 45px;
 }
 
 .loginForm__container > form > div > input {
@@ -88,7 +88,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 45px;
+  margin: 10px 45px 0 45px;
 }
 
 .loginForm__help:hover {
