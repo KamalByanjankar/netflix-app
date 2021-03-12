@@ -11,7 +11,6 @@ function SignupForm() {
     const [isEmailActive, setIsEmailActive] = useState(false)
     const [isPasswordActive, setIsPasswordActive] = useState(false)
     const [isRepasswordActive, setIsRepasswordActive] = useState(false)
-    const [showLoginForm, setShowLoginForm] = useState(false)
     const history = useHistory()
 
 
@@ -51,7 +50,7 @@ function SignupForm() {
         }
     }
 
-    const handleSubmitForm = (e) => {
+    const handleSignupForm = (e) => {
         e.preventDefault()
         if(password !== repassword){
             alert("Passwords don't match!")
@@ -59,7 +58,7 @@ function SignupForm() {
         else{
             auth.createUserWithEmailAndPassword(email, password)
             .then((authUser) => {
-                console.log(authUser)
+                // console.log(authUser)
                 alert('Your account has been successfully created!')
             })
             .catch(error => {
@@ -69,8 +68,9 @@ function SignupForm() {
             setEmail('')
             setPassword('')
             setRepassword('')
+
+            history.push("/login")
         }
-        history.push("/login")
     }
 
     return (
@@ -87,7 +87,7 @@ function SignupForm() {
             </div>
             <div className="signupForm__container">
                 <h1>Sign up</h1>
-                <form>
+                <form onSubmit={handleSignupForm}>
                     <div className="signupForm__floatlabel">
                         <input
                             type="email"
@@ -128,7 +128,7 @@ function SignupForm() {
                     <button
                         type="submit"
                         className="signupForm__button"
-                        onClick={handleSubmitForm}
+                        onClick={handleSignupForm}
                     >
                         Sign up
                     </button>

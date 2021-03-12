@@ -5,9 +5,10 @@ import HomeScreen from './components/HomeScreen/HomeScreen';
 import LoginForm from './components/LoginForm/LoginForm';
 import LoginScreen from './components/LoginScreen/LoginScreen';
 import SignupForm from './components/SignupForm/SignupForm';
+import { useStateValue } from './context/StateProvider';
 
 function App() {
-  const user = null
+  const [{user}] = useStateValue(null)
 
   return (
     <div>
@@ -27,7 +28,14 @@ function App() {
             </Switch>
           </Router>
         ) : (
-          <HomeScreen />
+          <Router>
+            <Switch>
+              <Route path="/home">
+                <HomeScreen />
+              </Route>
+            </Switch>
+          </Router>
+          
         )
       }
     </div>

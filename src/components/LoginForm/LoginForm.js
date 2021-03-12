@@ -1,22 +1,22 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import './LoginForm.css'
 import FacebookIcon from '@material-ui/icons/Facebook'
 import { useHistory } from 'react-router'
+import { auth } from '../../context/firebase'
+import { useStateValue } from '../../context/StateProvider'
 
 function LoginForm() {
     const [checked, setChecked] = useState(true)
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
     const [isEmailActive, setIsEmailActive] = useState(false)
     const [isPasswordActive, setIsPasswordActive] = useState(false)
     const history = useHistory()
+    const [ , dispatch] = useStateValue()
+    const emailRef = useRef(null)
+    const passwordRef = useRef(null)
 
 
     const handleEmailChange = (e) => {
-        const value = e.target.value;
-        setEmail(value)
-
-        if(value !== ''){
+        if(e.target.value !== ''){
             setIsEmailActive(true)
         }
         else{
@@ -25,15 +25,29 @@ function LoginForm() {
     }
 
     const handlePasswordChange = (e) => {
-        const value = e.target.value;
-        setPassword(value)
-
-        if(value !== ''){
+        if(e.target.value !== ''){
             setIsPasswordActive(true)
         }
         else{
             setIsPasswordActive(false)
         }
+    }
+
+    const handleLoginForm = (e) => {
+        e.preventDefault()
+
+        auth.signInWithEmailAndPassword(emailRef.current.value, passwordRef.current.value)
+        .then((authUser) => {
+            dispatch({
+                type: 'LOGIN', payload: authUser,
+                user: localStorage.setItem('currentUser', JSON.stringify(authUser))
+            })
+        })
+        .catch(error => {
+            alert(error.message)
+        })
+
+        history.push("/home")
     }
  
     return (
@@ -52,11 +66,12 @@ function LoginForm() {
 
             <div className="loginForm__container">
                 <h1>Sign In</h1>
-                <form>
+                <form onSubmit={handleLoginForm}>
                     <div className="loginForm__floatlabel">
                         <input 
                             type="email" 
-                            value={email}
+                            required
+                            ref={emailRef}
                             onChange={handleEmailChange}
                         />
                         <label 
@@ -70,7 +85,8 @@ function LoginForm() {
                     <div className="loginForm__floatlabel">
                         <input 
                             type="password"
-                            value={password}
+                            required
+                            ref={passwordRef}
                             onChange={handlePasswordChange}
                         />
                         <label 
@@ -84,6 +100,7 @@ function LoginForm() {
                     <button 
                         type="submit"
                         className="loginForm__button"
+                        onClick={handleLoginForm}
                     >
                         Sign In
                     </button>
