@@ -12,7 +12,7 @@ function App() {
   const [{user}] = useStateValue(null)
 
   return (
-    <div>
+    <div className="app">
       {
         !user ? (
           <Router>
