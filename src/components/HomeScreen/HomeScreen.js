@@ -1,15 +1,13 @@
 import React from 'react'
-import { useHistory } from 'react-router'
-import { useStateValue } from '../../context/StateProvider'
+import Banner from '../Banner/Banner'
 import Navbar from '../Navbar/Navbar'
 
 
 function HomeScreen() {
-
-
     return (
         <div>
             <Navbar />
+            <Banner />
             
         </div>
     )
