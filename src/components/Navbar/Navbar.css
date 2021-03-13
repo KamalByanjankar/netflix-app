@@ -1,0 +1,23 @@
+.navbar__contents {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar__netflixlogo {
+  position: fixed;
+  width: 150px;
+  object-fit: contain;
+  left: 30px;
+  top: -10px;
+  cursor: pointer;
+}
+
+.navbar__profilelogo {
+  position: fixed;
+  width: 35px;
+  object-fit: contain;
+  right: 40px;
+  top: 15px;
+  cursor: pointer;
+}

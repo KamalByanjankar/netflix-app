@@ -4,6 +4,7 @@ import './App.css';
 import HomeScreen from './components/HomeScreen/HomeScreen';
 import LoginForm from './components/LoginForm/LoginForm';
 import LoginScreen from './components/LoginScreen/LoginScreen';
+import Profile from './components/Profile/Profile';
 import SignupForm from './components/SignupForm/SignupForm';
 import { useStateValue } from './context/StateProvider';
 
@@ -32,6 +33,9 @@ function App() {
             <Switch>
               <Route path="/home">
                 <HomeScreen />
+              </Route>
+              <Route path="/profile">
+                <Profile />
               </Route>
             </Switch>
           </Router>
