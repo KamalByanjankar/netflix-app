@@ -47,7 +47,7 @@ function LoginForm() {
             alert(error.message)
         })
 
-        history.push("/home")
+        history.push("/")
     }
  
     return (
